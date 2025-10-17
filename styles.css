@@ -1,0 +1,136 @@
+/* Tipografía y colores */
+:root{
+  --bg: rgba(0,0,0,.35);
+  --paper: rgba(255,255,255,.85);
+  --ink: #1b1d24;
+  --shadow: 0 12px 30px rgba(0,0,0,.25);
+  --radius: 12px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: 'Outfit', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--ink);
+  min-height:100dvh;
+}
+
+.bg{
+  position:fixed; inset:0;
+  background-image:
+    linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.35)),
+    url('assets/bg.png');
+  background-size:cover; background-position:center;
+  filter:saturate(1.05);
+  z-index:-2;
+}
+
+.wrap{
+  width:min(1100px, 94%);
+  margin: 26px auto 48px;
+  animation: fadeUp .6s ease both;
+}
+
+.top{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  color:white;
+  animation: fadeDown .6s ease both;
+}
+.title h1{margin:0; font-size:clamp(1.4rem, 1.2rem + 1.8vw, 2.4rem)}
+.title p{margin:.2rem 0 0; opacity:.9}
+
+.actions{display:flex; gap:.6rem; flex-wrap:wrap}
+.btn{
+  border:1px solid rgba(255,255,255,.3);
+  background: rgba(255,255,255,.15);
+  color:white; padding:.5rem .8rem;
+  border-radius:999px; backdrop-filter: blur(6px);
+  cursor:pointer; transition: transform .12s ease, background .2s ease;
+}
+.btn:hover{background:rgba(255,255,255,.22); transform: translateY(-1px)}
+.btn:active{transform: translateY(0)}
+.btn.ghost{background:rgba(0,0,0,.25); border-color:rgba(0,0,0,.35)}
+
+.tabla{
+  margin-top: 14px;
+  display:grid;
+  grid-template-columns: 140px repeat(5, 1fr);
+  gap: 10px;
+  background: rgba(0,0,0,.35);
+  padding: 12px;
+  border-radius: calc(var(--radius) + 4px);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+  animation: fadeUp .6s .1s ease both;
+}
+
+.cell{
+  background: rgba(255,255,255,.9);
+  border:1px solid rgba(255,255,255,.7);
+  border-bottom-color:#e8e9ef;
+  padding:.55rem .6rem;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 0 #e5e6ed;
+  animation: pop .4s ease both;
+}
+.muted{ font-weight:700; text-align:center }
+
+.head{ font-weight:800; text-align:center; font-size:.95rem }
+.time{ font-weight:700; display:flex; align-items:center; justify-content:center; min-height:44px }
+
+.slot{
+  background: white; 
+  display:flex; align-items:center; justify-content:center;
+  font-size:.95rem; line-height:1.2;
+  min-height:44px;
+  text-align:center;
+  transition: transform .12s ease, box-shadow .2s ease;
+}
+.slot:hover{ transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.15) }
+.slot:empty::after{ content:'—'; color:#b0b3bf }
+
+.band{
+  grid-column: 1 / -1;
+  text-align:center;
+  background: rgba(0,0,0,.55);
+  color:white;
+  padding:.5rem 1rem;
+  border-radius: var(--radius);
+  letter-spacing:.1em;
+  font-weight: 800;
+  border:1px solid rgba(0,0,0,.35);
+  animation: fadeDown .5s ease both;
+}
+
+.gap{
+  grid-column: 1 / -1;
+  height: 6px; background: transparent; border:none; box-shadow:none; padding:0;
+}
+
+.foot{
+  margin-top: 14px;
+  color:white; text-align:center;
+}
+
+@keyframes fadeUp{
+  from{ opacity:0; transform: translateY(10px) }
+  to{ opacity:1; transform: translateY(0) }
+}
+@keyframes fadeDown{
+  from{ opacity:0; transform: translateY(-8px) }
+  to{ opacity:1; transform: translateY(0) }
+}
+@keyframes pop{
+  from{ opacity:0; transform: scale(.98) }
+  to{ opacity:1; transform: scale(1) }
+}
+
+@media print{
+  .bg{filter:none; background-image:none; background-color:#f6f7fb}
+  body{color:#000}
+  .top .actions{display:none}
+  .tabla{box-shadow:none; background:transparent}
+  .cell{background:#fff}
+  .foot{color:#000}
+}
