@@ -1,1 +1,1 @@
-https://braisentidk.github.io/horariopichelsegundoa.github.io/
+Para ver el horario, pulsa aquí: https://braisentidk.github.io/horariopichelsegundoa.github.io/
